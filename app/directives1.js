@@ -1,13 +1,12 @@
-(function(angular){
+(function(){
+  var angular = require('angular');
   var app = angular.module('myApp');
 
-  app.directives(function(){
+  app.directive('myNavBar',function(){
     return {
       restrict: 'E',
-      templateUrl: 'templates/navbar.js'
+      templateUrl: 'templates/navbar.html'
     };
   });
-
-
 
 })();

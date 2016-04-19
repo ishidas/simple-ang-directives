@@ -4,12 +4,13 @@ const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
 const paths = ['*.js', 'test/*.js', 'app/*.js', 'app/templates/*.js'];
-const webpack = require('gulp-webpack');
+const webpack = require('webpack-stream');
 
 const source = {
-  html: __dirname + '/app/index.html',
+  html: __dirname + '/app/**/*.html',
   js: __dirname + '/app/index.js',
-  test: __dirname + '/test/*_spec.js'
+  test: __dirname + '/test/*_spec.js',
+  directive: __dirname + '/app/*.js'
 };
 
 
@@ -35,7 +36,7 @@ gulp.task('bundle:test', ()=>{
 });
 
 gulp.task('bundle:dev', function(){
-  return gulp.src(__dirname + '/app/index.js')
+  return gulp.src(source.directive)
   .pipe(webpack({
     watch: true,
     output: {
