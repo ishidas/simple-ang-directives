@@ -25,4 +25,46 @@
       controllerAs: 'mine'
     };
   });
+
+  app.directive('dogCustomDirective', function(){
+    return {
+      restrict: 'EA',
+      replace: true,
+      scope: {
+        name: '=',
+        age: '=',
+        hobby: '='
+      },
+      templateUrl: 'templates/dog.html'
+    };
+  });
+
+// link is on the outer most element
+  app.directive('clickable', function(){
+    return {
+      scope: {},
+      restrict: 'E',
+      template: '<button>click me several times!</button><p>I am turning my color!!</p><p>Me too!!</p>',
+      link: function(scope, element, attrs){
+        element.on('click', function(){
+          element.css(
+            {
+              'color': 'red',
+              'background-color': 'blue'
+            });
+        });
+      }
+    };
+  });
+
+  app.directive('takeFormData', function(){
+    return {
+      restrict: 'A',
+      scope: {
+        value: '=ngModel'
+      },
+      templateUrl: 'templates/form-data.html'
+    };
+  });
+
 })();
